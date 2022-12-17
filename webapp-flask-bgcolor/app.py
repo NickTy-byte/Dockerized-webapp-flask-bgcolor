@@ -18,7 +18,7 @@ color_codes = {
 SUPPORTED_COLORS = ",".join(color_codes.keys())
 
 # Get color from Environment variable
-COLOR_FROM_ENV = os.environ.get('APP_COLOR')
+COLOR_FROM_ENV = os.environ.get('APP_COLORHEXCODE')
 # Generate a random color
 COLOR = random.choice(["red", "green", "blue", "olive", "purple", "navy"])
 # Get dynamic title from Environment variable
@@ -29,7 +29,7 @@ TITLE = "Cloud Computing - University of West Attica"
 @app.route("/")
 def main():
     # return 'Hello'
-    return render_template('index.html', name=socket.gethostname(), color=color_codes[COLOR], colorname=COLOR, title=TITLE)
+    return render_template('index.html', name=socket.gethostname(), color=COLOR, colorname=COLOR, title=TITLE)
 
 
 if __name__ == "__main__":
@@ -64,11 +64,6 @@ if __name__ == "__main__":
         COLOR = COLOR_FROM_ENV
     else:
         print("No command line argument or environment variable. Picking a Random Color =" + COLOR)
-
-    # Check if input color is a supported one
-    if COLOR not in color_codes:
-        print("Color not supported. Received '" + COLOR + "' expected one of " + SUPPORTED_COLORS)
-        exit(1)
 
     if args.title:
         print("Title from command line argument =" + args.title)
